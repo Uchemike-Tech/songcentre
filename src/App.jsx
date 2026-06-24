@@ -198,23 +198,27 @@ function App() {
       </header>
 
       <div className="toolbar">
-        <div className="toolbar-left">
-          <div className="search-wrap">
-            <SearchIcon />
-            <input
-              type="text" placeholder="Search songs..." value={search}
-              onChange={e => setSearch(e.target.value)}
-            />
+        <div className="toolbar-inner">
+          <div className="toolbar-row">
+            <div className="search-wrap">
+              <SearchIcon />
+              <input
+                type="text" placeholder="Search songs..." value={search}
+                onChange={e => setSearch(e.target.value)}
+              />
+            </div>
+            <select value={category} onChange={e => setCategory(e.target.value)}>
+              <option value="">All Categories</option>
+              {categories.map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
           </div>
-          <select value={category} onChange={e => setCategory(e.target.value)}>
-            <option value="">All Categories</option>
-            {categories.map(c => <option key={c} value={c}>{c}</option>)}
-          </select>
+          <div className="toolbar-row">
+            <button className="btn btn-primary" onClick={downloadAll} disabled={dlActive}>
+              <DownloadIcon size={16} />
+              {dlActive ? 'Downloading...' : 'Download All'}
+            </button>
+          </div>
         </div>
-        <button className="btn btn-primary" onClick={downloadAll} disabled={dlActive}>
-          <DownloadIcon size={16} />
-          {dlActive ? 'Downloading...' : 'Download All'}
-        </button>
       </div>
 
       <main className="container">
